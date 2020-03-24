@@ -90,9 +90,9 @@ class Bord
         $chunks = array_chunk($this->_squares, 10, true);
 
         foreach ($chunks as $key => $chunk) {
-            if (0 <= $key && $key <= 3) {
+            if (0 <= $key && 3 >= $key) {
                 $this->_setInitialStones($key, $chunk, 'white');
-            } elseif (6 <= $key && $key <= 10) {
+            } elseif (6 <= $key && 10 >= $key) {
                 $this->_setInitialStones($key, $chunk, 'black');
             }
         }

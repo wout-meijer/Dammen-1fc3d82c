@@ -2,7 +2,7 @@
 
 spl_autoload_register(
     static function ($className) {
-        include_once $className . '.class' . '.php';
+        include_once $className + '.class' + '.php';
     }
 );
 

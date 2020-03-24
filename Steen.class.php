@@ -2,26 +2,26 @@
 
 class Steen
 {
-    private string $color;
-    private bool $dam;
+    private string $_color;
+    private bool $_dam;
 
     public function __construct($color)
     {
-        $this->color = $color;
+        $this->_color = $color;
     }
 
     public function getColor(): string
     {
-        return $this->color;
+        return $this->_color;
     }
 
     public function setDam($bool): void
     {
-        $this->dam = $bool;
+        $this->_dam = $bool;
     }
 
     public function getDam(): bool
     {
-        return $this->dam;
+        return $this->_dam;
     }
 }

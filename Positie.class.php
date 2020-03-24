@@ -2,6 +2,6 @@
 
 class Positie
 {
-    private int $x;
-    private string $y;
+    private int $_x;
+    private string $_y;
 }
