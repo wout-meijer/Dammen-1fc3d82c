@@ -2,15 +2,15 @@
 
 class Bord
 {
-    private array $squares = [];
+    private array $_squares = [];
 
     public function __construct()
     {
-        for($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             if ($i % 2 === 0) {
-                $this->squares[] = new Vak('black');
+                $this->_squares[] = new Vak('black');
             } else {
-                $this->squares[] = new Vak('white');
+                $this->_squares[] = new Vak('white');
             }
         }
     }
@@ -20,10 +20,10 @@ class Bord
         $from = false;
         $to = false;
 
-        foreach ($this->squares as $square) {
+        foreach ($this->_squares as $square) {
             if ($square->getPosition() === ucfirst($zet->getFromPosition())) {
                 $from = $square;
-            } elseif($square->getPosition() === ucfirst($zet->getToPosition())) {
+            } elseif ($square->getPosition() === ucfirst($zet->getToPosition())) {
                 $to = $square;
             }
         }
@@ -32,20 +32,20 @@ class Bord
         $toLocation = str_split($to->getPosition(), 1);
 
 
-        if ($this->incrementLetter($fromLocation[0]) !== $toLocation[0]) {
+        if ($this->_incrementLetter($fromLocation[0]) !== $toLocation[0]) {
             //going up
-            $letter = $this->incrementLetter($fromLocation[0]);
+            $letter = $this->_incrementLetter($fromLocation[0]);
             $number = $toLocation[1];
 
             if ($fromLocation[0] > $toLocation[0]) {
                 //going down
-                $letter = $this->decrementLetter($fromLocation[0]);
+                $letter = $this->_decrementLetter($fromLocation[0]);
             }
 
-            foreach ($this->squares as $square) {
+            foreach ($this->_squares as $square) {
                 if ($square->getPosition() === ucfirst($letter) . ($number + 1)) {
                     $square->removeStone();
-                } else if($square->getPosition() === ucfirst($letter) . ($number - 1)){
+                } elseif ($square->getPosition() === ucfirst($letter) . ($number - 1)) {
                     $square->removeStone();
                 }
             }
@@ -63,10 +63,10 @@ class Bord
     public function printStatus(): void
     {
         $str = 'K';
-        $chunks = array_chunk($this->squares, 10, true);
+        $chunks = array_chunk($this->_squares, 10, true);
 
-        for($i = 0; $i < 10; $i++) {
-            $str = $this->decrementLetter($str);
+        for ($i = 0; $i < 10; $i++) {
+            $str = $this->_decrementLetter($str);
 
             print "$str |";
 
@@ -87,23 +87,23 @@ class Bord
 
     public function populateInitialBoard(): void
     {
-        $chunks = array_chunk($this->squares, 10, true);
+        $chunks = array_chunk($this->_squares, 10, true);
 
-        foreach($chunks as $key => $chunk) {
-            if(0 <= $key && $key <= 3) {
-                $this->setInitialStones($key, $chunk, 'white');
+        foreach ($chunks as $key => $chunk) {
+            if (0 <= $key && $key <= 3) {
+                $this->_setInitialStones($key, $chunk, 'white');
             } elseif (6 <= $key && $key <= 10) {
-                $this->setInitialStones($key, $chunk, 'black');
+                $this->_setInitialStones($key, $chunk, 'black');
             }
         }
     }
 
     public function getSquares(): array
     {
-        return $this->squares;
+        return $this->_squares;
     }
 
-    private function setInitialStones(int $key, array $chunk, string $stoneColor): void
+    private function _setInitialStones(int $key, array $chunk, string $stoneColor): void
     {
         foreach ($chunk as $itemKey => $square) {
             if ($key % 2 === 0 ? $itemKey % 2  !== 0: $itemKey % 2 === 0) {
@@ -112,12 +112,12 @@ class Bord
         }
     }
 
-    private function decrementLetter(string $letter): string
+    private function _decrementLetter(string $letter): string
     {
         return chr(ord($letter) - 1);
     }
 
-    private function incrementLetter(string $letter): string
+    private function _incrementLetter(string $letter): string
     {
         return chr(ord($letter) + 1);
     }

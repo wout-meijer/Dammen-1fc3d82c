@@ -2,7 +2,7 @@
 
 class RegelControleur
 {
-    public function isValidMove(Zet $move, Bord $bord, $currentPlayer, $color): bool
+    public function isValidMove(Zet $move, Bord $bord, $color): bool
     {
         $squares = $bord->getSquares();
 
