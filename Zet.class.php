@@ -2,22 +2,22 @@
 
 class Zet
 {
-    private string $fromPosition;
-    private string $toPosition;
+    private string $_fromPosition;
+    private string $_toPosition;
 
     public function __construct($from, $to)
     {
-        $this->fromPosition = $from;
-        $this->toPosition = $to;
+        $this->_fromPosition = $from;
+        $this->_toPosition = $to;
     }
 
     public function getFromPosition(): string
     {
-        return $this->fromPosition;
+        return $this->_fromPosition;
     }
 
     public function getToPosition(): string
     {
-        return $this->toPosition;
+        return $this->_toPosition;
     }
 }
